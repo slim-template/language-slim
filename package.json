@@ -1,0 +1,13 @@
+{
+  "name": "language-slim",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Slim language package for Atom.",
+  "repository": "https://github.com/slim-template/language-slim",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+  }
+}
