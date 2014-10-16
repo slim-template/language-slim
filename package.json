@@ -1,6 +1,6 @@
 {
   "name": "language-slim",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "Slim language package for Atom.",
   "repository": "https://github.com/slim-template/language-slim",
