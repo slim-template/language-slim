@@ -46,6 +46,45 @@
     ]
   }
   {
+    'begin': '^(\\s*)(css):$'
+    'beginCaptures':
+      '2':
+        'name': 'constant.language.name.css.filter.slim'
+    'end': '^(?!(\\1\\s)|\\s*$)'
+    'name': 'text.css.filter.slim'
+    'patterns': [
+      {
+        'include': 'source.css'
+      }
+    ]
+  }
+  {
+    'begin': '^(\\s*)(sass):$'
+    'beginCaptures':
+      '2':
+        'name': 'constant.language.name.sass.filter.slim'
+    'end': '^(?!(\\1\\s)|\\s*$)'
+    'name': 'text.sass.filter.slim'
+    'patterns': [
+      {
+        'include': 'source.sass'
+      }
+    ]
+  }
+  {
+    'begin': '^(\\s*)(scss):$'
+    'beginCaptures':
+      '2':
+        'name': 'constant.language.name.scss.filter.slim'
+    'end': '^(?!(\\1\\s)|\\s*$)'
+    'name': 'text.scss.filter.slim'
+    'patterns': [
+      {
+        'include': 'source.sass'
+      }
+    ]
+  }
+  {
     'captures':
       '1':
         'name': 'punctuation.definition.prolog.slim'
@@ -185,8 +224,14 @@
       }
     ]
   'embedded-ruby':
-    'begin': '(?<!\\\\)#{'
-    'end': '}'
+    'begin': '(?<!\\\\)#\\{{1,2}'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.embedded.ruby'
+    'end': '\\}{1,2}'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.embedded.ruby'
     'name': 'source.ruby.embedded.html'
     'patterns': [
       {
@@ -268,14 +313,9 @@
       }
     ]
   'rubyline':
-    'begin': '==\'|=\'|==|=|-'
+    'begin': '(==|=)(<>|><|<\'|\'<|<|>|\')?|-'
     'contentName': 'source.ruby.embedded.slim'
-    'end': '((do|\\{)( \\|[^|]+\\|)?)$|[^\\\\,]$'
-    'endCaptures':
-      '1':
-        'name': 'source.ruby.embedded.html'
-      '2':
-        'name': 'keyword.control.ruby.start-block'
+    'end': '(?<!\\\\|,)$'
     'name': 'meta.line.ruby.slim'
     'patterns': [
       {
