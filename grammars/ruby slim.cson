@@ -1,6 +1,7 @@
 'fileTypes': [
   'slim'
   'skim'
+  'emblem'
 ]
 'foldingStartMarker': '^\\s*([-%#\\:\\.\\w\\=].*)\\s$'
 'foldingStopMarker': '^\\s*$'
