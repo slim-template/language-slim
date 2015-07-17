@@ -1,6 +1,7 @@
 '.text.slim':
   'editor':
     'commentStart': '/ '
+    'increaseIndentPattern': '^([-%#\\:\\.\\=].*)\\s*$'
   whitespace: 
     removeTrailingWhitespace: false
     ignoreWhitespaceOnCurrentLine: false
