@@ -1,6 +1,7 @@
 '.text.slim':
   'editor':
     'commentStart': '/ '
-  whitespace: 
+    'increaseIndentPattern': '$.'
+  whitespace:
     removeTrailingWhitespace: false
     ignoreWhitespaceOnCurrentLine: false
