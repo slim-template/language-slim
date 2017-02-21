@@ -2,6 +2,4 @@
   'editor':
     'commentStart': '/ '
     'increaseIndentPattern': '$.'
-  whitespace:
-    removeTrailingWhitespace: false
-    ignoreWhitespaceOnCurrentLine: false
+    
