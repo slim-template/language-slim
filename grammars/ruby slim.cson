@@ -8,6 +8,19 @@
 'name': 'Ruby Slim'
 'patterns': [
   {
+    'begin': '^(\\s*)(ruby):$'
+    'beginCaptures':
+      '2':
+        'name': 'constant.language.name.ruby.filter.slim'
+    'end': '^(?!(\\1\\s)|\\s*$)'
+    'name': 'text.ruby.filter.slim'
+    'patterns': [
+      {
+        'include': 'source.ruby'
+      }
+    ]
+  },
+  {
     'begin': '^(\\s*)(javascript):$'
     'beginCaptures':
       '2':
