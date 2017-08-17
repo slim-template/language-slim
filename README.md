@@ -1,4 +1,6 @@
-# Slim Atom language package [![endorse](http://api.coderwall.com/fredwu/endorsecount.png)](http://coderwall.com/fredwu)
+# Slim Atom language package
+
+## Looking for maintainer(s)! See [this issue](https://github.com/slim-template/language-slim/issues/25).
 
 ## Description
 
