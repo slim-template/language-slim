@@ -363,9 +363,9 @@ repository:
     match: "(\\.|#)([\\w\\d\\-]+)"
   rubyline:
     begin: "(==|=)(<>|><|<'|'<|<|>)?|-"
-    comment: "Hack to thwart Sublime's Ruby highlighter. It thinks do without a variable continues the next line (this can be muted with a / at the end of the line). For things like yields, do is unnecessary without an argument, so this hack will suffice"
+    comment: "Hack to thwart Atom's Ruby highlighter. It thinks do without a variable continues the next line (this can be muted with a / at the end of the line). For things like yields, do is unnecessary without an argument, so this hack will suffice"
     contentName: "source.ruby.embedded.slim"
-    end: "(do\\s*\\n$)|(?<!\\\\|,|,\\n|\\\\\\n)$"
+    end: "(do\s*$)|(?<!\\\\|,|,\\n|\\\\\\n)$"
     endCaptures:
       "1":
         name: "keyword.control.start-block.ruby"
