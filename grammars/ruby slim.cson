@@ -62,6 +62,19 @@ patterns: [
     ]
   }
   {
+    begin: "^(\\s*)(ls|livescript):$"
+    beginCaptures:
+      "2":
+        name: "constant.language.name.livescript.filter.slim"
+    end: "^(?!(\\1\\s)|\\s*$)"
+    name: "text.livescript.filter.slim"
+    patterns: [
+      {
+        include: "source.livescript"
+      }
+    ]
+  }
+  {
     begin: "^(\\s*)(markdown):$"
     beginCaptures:
       "2":

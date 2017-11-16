@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Slim language package for Atom.",
-  "repository": "https://github.com/slim-template/language-slim",
+  "repository": "https://github.com/Announcement/language-slim",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
