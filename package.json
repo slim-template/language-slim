@@ -8,5 +8,9 @@
   "engines": {
     "atom": ">0.50.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "cson": "^5.1.0",
+    "yamljs": "^0.3.0"
+  }
 }

@@ -4,6 +4,7 @@ fileTypes: [
 ]
 foldingStartMarker: "^\\s*([-%#\\:\\.\\w\\=].*)\\s$"
 foldingStopMarker: "^\\s*$"
+keyEquivalent: "^~S"
 name: "Ruby Slim"
 patterns: [
   {
@@ -180,8 +181,8 @@ patterns: [
   }
   {
     begin: "^(\\s*)(\\||')\\s*"
-    comment: "Verbatim text (can include HTML tags and copied lines)"
     end: "^(?!(\\1\\s)|\\s*$)"
+    comment: "Verbatim text (can include HTML tags and copied lines)"
     patterns: [
       {
         include: "text.html.basic"
@@ -193,23 +194,25 @@ patterns: [
   }
   {
     begin: "^\\s*(\\.|#|[-a-zA-Z0-9]+)([\\w-]+)?"
+    end: "$|(?!\\.|#|:|-|~|/|\\}|\\]|\\*|\\s?[\\*\\{])"
+    name: "meta.tag"
+    comment: "1 - dot OR hash OR any combination of word, number; 2 - OPTIONAL any combination of word, number, dash or underscore (following a . or"
     captures:
       "1":
         name: "entity.name.tag.slim"
       "2":
         name: "entity.other.attribute-name.event.slim"
-    comment: "1 - dot OR hash OR any combination of word, number; 2 - OPTIONAL any combination of word, number, dash or underscore (following a . or"
-    end: "$|(?!\\.|#|:|-|~|/|\\}|\\]|\\*|\\s?[\\*\\{])"
-    name: "meta.tag"
     patterns: [
       {
         begin: "(:[\\w\\d]+)+"
-        comment: "XML"
         end: "$|\\s"
+        comment: "XML"
         name: "entity.name.tag.slim"
       }
       {
         begin: "(:\\s)(\\.|#|[a-zA-Z0-9]+)([\\w-]+)?"
+        end: "$|(?!\\.|#|=|-|~|/|\\}|\\]|\\*|\\s?[\\*\\{])"
+        comment: "Inline HTML / 1 - colon; 2 - dot OR hash OR any combination of word, number; 3 - OPTIONAL any combination of word, number, dash or underscore (following a . or"
         captures:
           "1":
             name: "punctuation.definition.tag.end.slim"
@@ -217,8 +220,6 @@ patterns: [
             name: "entity.name.tag.slim"
           "3":
             name: "entity.other.attribute-name.event.slim"
-        comment: "Inline HTML / 1 - colon; 2 - dot OR hash OR any combination of word, number; 3 - OPTIONAL any combination of word, number, dash or underscore (following a . or"
-        end: "$|(?!\\.|#|=|-|~|/|\\}|\\]|\\*|\\s?[\\*\\{])"
         patterns: [
           {
             include: "#root-class-id-tag"
@@ -230,15 +231,15 @@ patterns: [
       }
       {
         begin: "(\\*\\{)(?=.*\\}|.*\\|\\s*$)"
+        end: "(\\})|$|^(?!.*\\|\\s*$)"
+        name: "source.ruby.embedded.slim"
+        comment: "Splat attributes"
         beginCaptures:
           "1":
             name: "punctuation.section.embedded.ruby"
-        comment: "Splat attributes"
-        end: "(\\})|$|^(?!.*\\|\\s*$)"
         endCaptures:
           "1":
             name: "punctuation.section.embedded.ruby"
-        name: "source.ruby.embedded.slim"
         patterns: [
           {
             include: "#embedded-ruby"
@@ -277,8 +278,8 @@ patterns: [
   }
   {
     begin: "(?=<[\\w\\d\\:]+)"
-    comment: "Inline and root-level HTML tags"
     end: "$|\\/\\>"
+    comment: "Inline and root-level HTML tags"
     patterns: [
       {
         include: "text.html.basic"
@@ -354,18 +355,33 @@ repository:
     begin: "=(?=\\b)"
     end: "\\s|\\w$"
     name: "source.ruby.embedded.html"
-  "root-class-id-tag":
+  "tag-attribute":
+    begin: "([\\w.#_-]+)(=)(?!\\s)(true|false|nil)?(\\s*\\(|\\{)?"
+    name: "meta.attribute-with-value.slim"
     captures:
       "1":
-        name: "punctuation.separator.key-value.html"
+        name: "entity.other.attribute-name.event.slim"
       "2":
-        name: "entity.other.attribute-name.html"
-    match: "(\\.|#)([\\w\\d\\-]+)"
+        name: "punctuation.separator.key-value.html"
+      "3":
+        name: "constant.language.slim"
+    end: "\\}|\\)|$"
+    patterns: [
+      {
+        include: "#tag-stuff"
+      }
+      {
+        include: "#string-double-quoted"
+      }
+      {
+        include: "#string-single-quoted"
+      }
+    ]
   rubyline:
     begin: "(==|=)(<>|><|<'|'<|<|>)?|-"
-    comment: "Hack to thwart Atom's Ruby highlighter. It thinks do without a variable continues the next line (this can be muted with a / at the end of the line). For things like yields, do is unnecessary without an argument, so this hack will suffice"
     contentName: "source.ruby.embedded.slim"
-    end: "(do\s*$)|(?<!\\\\|,|,\\n|\\\\\\n)$"
+    end: "(do\\s*\\n$)|(?<!\\\\|,|,\\n|\\\\\\n)$"
+    comment: "Hack to thwart Sublime's Ruby highlighter. It thinks do without a variable continues the next line (this can be muted with a / at the end of the line). For things like yields, do is unnecessary without an argument, so this hack will suffice"
     endCaptures:
       "1":
         name: "keyword.control.start-block.ruby"
@@ -421,28 +437,13 @@ repository:
         include: "#entities"
       }
     ]
-  "tag-attribute":
-    begin: "([\\w.#_-]+)(=)(?!\\s)(true|false|nil)?(\\s*\\(|\\{)?"
+  "root-class-id-tag":
+    match: "(\\.|#)([\\w\\d\\-]+)"
     captures:
       "1":
-        name: "entity.other.attribute-name.event.slim"
-      "2":
         name: "punctuation.separator.key-value.html"
-      "3":
-        name: "constant.language.slim"
-    end: "\\}|\\)|$"
-    name: "meta.attribute-with-value.slim"
-    patterns: [
-      {
-        include: "#tag-stuff"
-      }
-      {
-        include: "#string-double-quoted"
-      }
-      {
-        include: "#string-single-quoted"
-      }
-    ]
+      "2":
+        name: "entity.other.attribute-name.html"
   "tag-stuff":
     patterns: [
       {
@@ -468,3 +469,4 @@ repository:
       }
     ]
 scopeName: "text.slim"
+uuid: "36302CC1-1E76-4910-B7B6-F1915EBBA0D3"
