@@ -193,7 +193,7 @@ patterns: [
     ]
   }
   {
-    begin: "^\\s*(\\.|#|[-a-zA-Z0-9]+)([\\w-]+)?"
+    begin: "^\\s*(\\.|#|[-a-zA-Z0-9]+)([\\w:-]+)?"
     end: "$|(?!\\.|#|:|-|~|/|\\}|\\]|\\*|\\s?[\\*\\{])"
     name: "meta.tag"
     comment: "1 - dot OR hash OR any combination of word, number; 2 - OPTIONAL any combination of word, number, dash or underscore (following a . or"
@@ -210,7 +210,7 @@ patterns: [
         name: "entity.name.tag.slim"
       }
       {
-        begin: "(:\\s)(\\.|#|[a-zA-Z0-9]+)([\\w-]+)?"
+        begin: "(:\\s)(\\.|#|[a-zA-Z0-9]+)([\\w:-]+)?"
         end: "$|(?!\\.|#|=|-|~|/|\\}|\\]|\\*|\\s?[\\*\\{])"
         comment: "Inline HTML / 1 - colon; 2 - dot OR hash OR any combination of word, number; 3 - OPTIONAL any combination of word, number, dash or underscore (following a . or"
         captures:
@@ -356,7 +356,7 @@ repository:
     end: "\\s|\\w$"
     name: "source.ruby.embedded.html"
   "tag-attribute":
-    begin: "([\\w.#_-]+)(=)(?!\\s)(true|false|nil)?(\\s*\\(|\\{)?"
+    begin: "([\\w.#_:-]+)(=)(?!\\s)(true|false|nil)?(\\s*\\(|\\{)?"
     name: "meta.attribute-with-value.slim"
     captures:
       "1":
