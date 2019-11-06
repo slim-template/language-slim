@@ -71,7 +71,7 @@ patterns: [
     name: "text.markdown.filter.slim"
     patterns: [
       {
-        include: "text.html.markdown"
+        include: "source.gfm"
       }
     ]
   }
